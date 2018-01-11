@@ -16,7 +16,7 @@ git clone https://github.com/natanaeladit/nodegoat
 
 *go to the directory
 ```
-cd NodeGoat
+cd nodegoat
 ```
 
 * Install node modules
