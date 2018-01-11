@@ -41,5 +41,10 @@ npm run db:seed
 ```
 npm start
 ```
+
+* Login 
+	* Admin Account - u:admin p:Admin_123
+	* User Accounts - (u:user1 p:User1_123), (u:user2 p:User2_123)
+
 ## License
 Code licensed under the [Apache License v2.0.](http://www.apache.org/licenses/LICENSE-2.0)
