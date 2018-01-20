@@ -16,7 +16,7 @@ var marked = require("marked");
 var app = express(); // Web framework to handle routing requests
 var routes = require("./app/routes");
 var config = require("./config/config"); // Application config properties
-/*
+
 // Fix for A6-Sensitive Data Exposure
 // Load keys for establishing secure HTTPS connection
 var fs = require("fs");
@@ -26,7 +26,7 @@ var httpsOptions = {
     key: fs.readFileSync(path.resolve(__dirname, "./artifacts/cert/server.key")),
     cert: fs.readFileSync(path.resolve(__dirname, "./artifacts/cert/server.crt"))
 };
-*/
+
 
 MongoClient.connect(config.db, function(err, db) {
     if (err) {
@@ -85,7 +85,7 @@ MongoClient.connect(config.db, function(err, db) {
         secret: config.cookieSecret,
         // Both mandatory in Express v4
         saveUninitialized: true,
-        resave: true
+        resave: true,
         /*
         // Fix for A5 - Security MisConfig
         // Use generic cookie name
@@ -98,7 +98,7 @@ MongoClient.connect(config.db, function(err, db) {
         cookie: {
             httpOnly: true
             // Remember to start an HTTPS server to get this working
-            secure: true
+            // secure: true
         }
         
 
