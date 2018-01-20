@@ -121,7 +121,7 @@ function SessionHandler(db) {
         var EMAIL_RE = /^[\S]+@[\S]+\.[\S]+$/;
         //var PASS_RE = /^.{1,20}$/;
         
-        //Fix for A2-2 - Broken Authentication -  requires stronger password
+        //Fix for A2-2 - Broken Authentication - requires stronger password
         //(at least 8 characters with numbers and both lowercase and uppercase letters.)
         var PASS_RE =/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
