@@ -57,8 +57,8 @@ function SessionHandler(db) {
 
         userDAO.validateLogin(userName, password, function(err, user) {
             var errorMessage = "Invalid username and/or password";
-            //var invalidUserNameErrorMessage = "Invalid username";
-            //var invalidPasswordErrorMessage = "Invalid password";
+            /*var invalidUserNameErrorMessage = "Invalid username";
+            var invalidPasswordErrorMessage = "Invalid password";*/
             if (err) {
                 if (err.noSuchUser) {
                     return res.render("login", {
