@@ -96,9 +96,9 @@ MongoClient.connect(config.db, function(err, db) {
         // Fix for A7 - XSS
         // TODO: Add "maxAge"
         cookie: {
-            httpOnly: true
+            httpOnly: true,
             // Remember to start an HTTPS server to get this working
-            // secure: true
+            secure: true
         }
         
 
@@ -142,17 +142,18 @@ MongoClient.connect(config.db, function(err, db) {
         */
     });
 
+	/*
     // Insecure HTTP connection
     http.createServer(app).listen(config.port, function() {
         console.log("Express http server listening on port " + config.port);
     });
-
-    /*
+	*/
+    
     // Fix for A6-Sensitive Data Exposure
     // Use secure HTTPS protocol
     https.createServer(httpsOptions, app).listen(config.port,  function() {
         console.log("Express https server listening on port " + config.port);
     });
-    */
+    
 
 });
