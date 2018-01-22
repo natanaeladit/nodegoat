@@ -25,7 +25,7 @@ npm install
 ```
 
 * Create Mongo DB:
-    You can create a remote MongoDB instance or use local mongod installation
+    You can create a remote MongoDB instance
     * Using Remote MongoDB
         * Create a sandbox mongoDB instance (free) at [MongoLab](https://mlab.com/)
         * Create a new database.
