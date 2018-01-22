@@ -1,4 +1,5 @@
 var MemosDAO = require("../data/memos-dao").MemosDAO;
+var logger = require("../../config/log.js");
 
 function MemosHandler(db) {
     "use strict";
@@ -9,7 +10,10 @@ function MemosHandler(db) {
     this.addMemos = function(req, res, next) {
 
         memosDAO.insert(req.body.memo, function(err, docs) {
-            if (err) return next(err);
+            if (err) {
+				logger.log("error", err);
+				return next(err);
+			}
 
             self.displayMemos(req, res, next);
 
@@ -21,7 +25,10 @@ function MemosHandler(db) {
         var userId = req.session.userId;
 
         memosDAO.getAllMemos(function(err, docs) {
-            if (err) return next(err);
+            if (err) {
+				logger.log("error", err);
+				return next(err);
+			}
             return res.render("memos", {
                 memosList: docs,
                 userId: userId

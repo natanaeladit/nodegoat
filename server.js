@@ -27,15 +27,17 @@ var httpsOptions = {
     cert: fs.readFileSync(path.resolve(__dirname, "./artifacts/cert/server.crt"))
 };
 
+var logger = require("./config/log.js");
+
 
 MongoClient.connect(config.db, function(err, db) {
     if (err) {
-        console.log("Error: DB: connect");
-        console.log(err);
+		logger.log("error", "Error: DB: connect");
+		logger.log("error", err);
 
         process.exit(1);
     }
-    console.log("Connected to the database: " + config.db);
+	logger.log("debug", "Connected to the database: " + config.db);
 
     
     // Fix for A5 - Security MisConfig
@@ -128,7 +130,7 @@ MongoClient.connect(config.db, function(err, db) {
         sanitize: true
     });
     app.locals.marked = marked;
-
+	
     // Application routes
     routes(app, db);
 
@@ -145,14 +147,14 @@ MongoClient.connect(config.db, function(err, db) {
 	/*
     // Insecure HTTP connection
     http.createServer(app).listen(config.port, function() {
-        console.log("Express http server listening on port " + config.port);
+		logger.log("debug", "Express http server listening on port " + config.port);
     });
 	*/
     
     // Fix for A6-Sensitive Data Exposure
     // Use secure HTTPS protocol
     https.createServer(httpsOptions, app).listen(config.port,  function() {
-        console.log("Express https server listening on port " + config.port);
+		logger.log("debug", "Express https server listening on port " + config.port);
     });
     
 

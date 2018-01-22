@@ -1,5 +1,6 @@
 var UserDAO = require("../data/user-dao").UserDAO;
 var AllocationsDAO = require("../data/allocations-dao").AllocationsDAO;
+var logger = require("../../config/log.js");
 
 /* The SessionHandler must be constructed with a connected db */
 function SessionHandler(db) {
@@ -29,7 +30,7 @@ function SessionHandler(db) {
                 }
             });
         } else {
-            console.log("redirecting to login");
+			logger.log("debug", "redirecting to login");
             return res.redirect("/login");
         }
     };
@@ -38,7 +39,7 @@ function SessionHandler(db) {
         if (req.session.userId) {
             next();
         } else {
-            console.log("redirecting to login");
+			logger.log("debug", "redirecting to login");
             return res.redirect("/login");
         }
     };
@@ -217,7 +218,7 @@ function SessionHandler(db) {
                 });
             });
         } else {
-            console.log("user did not validate");
+			logger.log("debug", "user did not validate");
             return res.render("signup", errors);
         }
     };
@@ -226,7 +227,7 @@ function SessionHandler(db) {
         var userId;
 
         if (!req.session.userId) {
-            console.log("welcome: Unable to identify user...redirecting to login");
+			logger.log("debug", "welcome: Unable to identify user...redirecting to login");
 
             return res.redirect("/login");
         }

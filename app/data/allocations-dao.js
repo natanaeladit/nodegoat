@@ -1,5 +1,7 @@
 var UserDAO = require("./user-dao").UserDAO;
 
+var logger = require("../../config/log.js");
+
 /* The AllocationsDAO must be constructed with a connected database object */
 function AllocationsDAO(db) {
 
@@ -8,7 +10,7 @@ function AllocationsDAO(db) {
     /* If this constructor is called without the "new" operator, "this" points
      * to the global object. Log a warning and call it correctly. */
     if (false === (this instanceof AllocationsDAO)) {
-        console.log("Warning: AllocationsDAO constructor called without 'new' operator");
+		logger.log("debug", "Warning: AllocationsDAO constructor called without 'new' operator");
         return new AllocationsDAO(db);
     }
 
@@ -35,7 +37,7 @@ function AllocationsDAO(db) {
 
             if (!err) {
 
-                console.log("Updated allocations");
+				logger.log("debug", "Updated allocations");
 
                 userDAO.getUserById(userId, function(err, user) {
 

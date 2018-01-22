@@ -1,4 +1,5 @@
 var bcrypt = require("bcrypt-nodejs");
+var logger = require("../../config/log.js");
 
 /* The UserDAO must be constructed with a connected database object */
 function UserDAO(db) {
@@ -8,7 +9,7 @@ function UserDAO(db) {
     /* If this constructor is called without the "new" operator, "this" points
      * to the global object. Log a warning and call it correctly. */
     if (false === (this instanceof UserDAO)) {
-        console.log("Warning: UserDAO constructor called without 'new' operator");
+		logger.log("debug", "Warning: UserDAO constructor called without 'new' operator");
         return new UserDAO(db);
     }
 
@@ -37,9 +38,10 @@ function UserDAO(db) {
 
         this.getNextSequence("userId", function(err, id) {
             if (err) {
+				logger.log("error", err);
                 return callback(err, null);
             }
-            console.log(typeof(id));
+			logger.log("debug", typeof(id));
 
             user._id = id;
 
@@ -48,7 +50,7 @@ function UserDAO(db) {
                 if (!err) {
                     return callback(null, result.ops[0]);
                 }
-
+				logger.log("error", err);
                 return callback(err, null);
             });
         });
@@ -77,7 +79,10 @@ function UserDAO(db) {
         // Callback to pass to MongoDB that validates a user document
         function validateUserDoc(err, user) {
 
-            if (err) return callback(err, null);
+            if (err) {
+				logger.log("error", err);
+				return callback(err, null);
+			}
 
             if (user) {
                 if (comparePassword(password, user.password)) {
@@ -126,6 +131,7 @@ function UserDAO(db) {
             },
             function(err, data) {
                 if (err) {
+					logger.log("error", err);
                     return callback(err, null);
                 }
                 callback(null, data.value.seq);

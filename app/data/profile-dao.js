@@ -1,3 +1,5 @@
+var logger = require("../../config/log.js");
+
 /* The ProfileDAO must be constructed with a connected database object */
 function ProfileDAO(db) {
 
@@ -6,7 +8,7 @@ function ProfileDAO(db) {
     /* If this constructor is called without the "new" operator, "this" points
      * to the global object. Log a warning and call it correctly. */
     if (false === (this instanceof ProfileDAO)) {
-        console.log("Warning: ProfileDAO constructor called without 'new' operator");
+		logger.log("debug", "Warning: ProfileDAO constructor called without 'new' operator");
         return new ProfileDAO(db);
     }
 
@@ -99,12 +101,12 @@ function ProfileDAO(db) {
             },
             function(err, result) {
                 if (!err) {
-                    console.log("Updated user profile");
+					logger.log("debug", "Updated user profile");
 					user.ssn = decrypt(user.ssn);
 					user.dob = decrypt(user.dob);
                     return callback(null, user);
                 }
-
+				logger.log("error", err);
                 return callback(err, null);
             }
         );
@@ -115,7 +117,10 @@ function ProfileDAO(db) {
                 _id: parseInt(userId)
             },
             function(err, user) {
-                if (err) return callback(err, null);
+                if (err) {
+					logger.log("error", err);
+					return callback(err, null);
+				}
                 
                 // Fix for A6 - Sensitive Data Exposure
                 // Decrypt ssn and DOB values to display to user
