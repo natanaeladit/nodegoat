@@ -37,7 +37,7 @@ npm install
 ```
 npm run db:seed
 ```
-* Start server, this starts the NodeGoat application at url [http://localhost:4000/](http://localhost:4000/)
+* Start server, this starts the NodeGoat application at url [https://localhost:4000/](https://localhost:4000/)
 ```
 npm start
 ```
