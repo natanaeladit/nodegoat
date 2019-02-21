@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/natanaeladit/nodegoat.svg?branch=master)](https://travis-ci.com/natanaeladit/nodegoat)
+
 # NodeGoat
 
 This is a fork of [NodeGoat](https://github.com/OWASP/NodeGoat) Project.
