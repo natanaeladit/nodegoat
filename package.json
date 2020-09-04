@@ -15,7 +15,7 @@
     "forever": "^0.15.1",
     "helmet": "^2.0.0",
     "marked": "0.3.12",
-    "mongodb": "^2.1.18",
+    "mongodb": "^3.1.13",
     "serve-favicon": "^2.3.0",
     "swig": "^1.4.2",
     "underscore": "^1.8.3",
